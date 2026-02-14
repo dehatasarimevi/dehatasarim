@@ -619,6 +619,21 @@
       .service-content-inner{padding:38px 18px 44px}
       .service-img-grid{grid-template-columns:1fr}
     }
+/* ✅ Mobilde taşmaları bitir - tasarımı bozmadan */
+html, body{ overflow-x:hidden; }
+
+/* iOS vh düzeltme */
+.hero{ min-height: 100svh; height: 100vh; }
+
+/* Header taşmasını önle */
+@media (max-width: 520px){
+  .brand{ min-width: 0; }
+}
+
+/* Projeler grid taşmasını önle */
+@media (max-width: 600px){
+  .proje-grid{ grid-template-columns: 1fr; }
+}
 
     /* ============================================================
        ✅ EKLENTİ: PRELOADER
