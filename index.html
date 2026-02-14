@@ -602,79 +602,37 @@
     .whatsapp-float img{width:60px;height:60px;display:block}
     .whatsapp-float:hover{transform:translateY(-3px) scale(1.03)}
 
-   /* ============================================================
-   ✅ MOBİL KAYMALARI DÜZELTME VE OTURTMA AYARLARI
-   ============================================================ */
-@media (max-width: 768px) {
-    /* 1. Kahraman (Hero) Bölümü Yazı Ayarı */
-    .content h2 {
-        font-size: 1.8rem !important; /* Başlık mobilde çok büyüktü, küçülttük */
-        line-height: 1.2;
-        margin-bottom: 25px;
-        width: 100%;
+    /* ===== Responsive ===== */
+    @media (max-width: 980px){
+      .nav-links, .nav-cta{display:none}
+      .hamburger{display:flex}
+      nav{padding:18px 5%}
+      .brand span{font-size:18px}
+      .service-hero{height:460px}
+      .service-img-grid{grid-template-columns:repeat(2,1fr)}
+      .about-images-grid{grid-template-columns:repeat(2,1fr)}
     }
+    @media (max-width: 520px){
+      .brand span{display:none}
+      .content{width:92%}
+      .controls{bottom:34px}
+      .service-content-inner{padding:38px 18px 44px}
+      .service-img-grid{grid-template-columns:1fr}
+    }
+/* ✅ Mobilde taşmaları bitir - tasarımı bozmadan */
+html, body{ overflow-x:hidden; }
 
-    /* 2. Hizmet Kartları Sabit Yükseklik İptali */
-    /* Mobilde 600px çok fazla, içeriğe göre büyümesini sağlıyoruz */
-    .service-hero {
-        height: 320px !important; 
-        padding: 15px !important;
-    }
+/* iOS vh düzeltme */
+.hero{ min-height: 100svh; height: 100vh; }
 
-    .service-hero h3 {
-        font-size: 1.2rem !important; /* Mobilde başlıklar sığsın */
-        letter-spacing: 1px;
-    }
-
-    /* 3. Resim Izgaraları (Grid) Ayarı */
-    /* Resimlerin yan yana 3 tane durması mobilde çok dar kalır */
-    .service-img-grid {
-        grid-template-columns: 1fr 1fr !important; /* Mobilde 2'li sıra yap */
-        gap: 8px;
-    }
-
-    .service-img-grid .img {
-        height: 150px !important; /* Mobilde resim kutularını küçült */
-    }
-
-    /* 4. Proje Bölümü Ayarı */
-    .proje-grid {
-        grid-template-columns: 1fr !important; /* Projeler alt alta gelsin */
-        padding: 0 10px;
-    }
-
-    .proje-thumb-grid img {
-        height: 200px !important;
-    }
-
-    /* 5. İletişim Formu Taşmalarını Önleme */
-    .contact-top {
-        flex-direction: column; /* Görsel ve yazıyı alt alta al */
-        gap: 20px;
-    }
-
-    .contact-visual {
-        height: 250px !important; /* Mobilde harita/resim alanını daralt */
-    }
-
-    /* 6. Yatay Kaymayı Tamamen Bitiren Sihirli Kod */
-    body, html {
-        overflow-x: hidden !important;
-        position: relative;
-        width: 100%;
-    }
-
-    /* 7. Navigasyon Logo Ayarı */
-    .brand img {
-        height: 30px !important; /* Logo mobilde biraz daha kibar dursun */
-    }
+/* Header taşmasını önle */
+@media (max-width: 520px){
+  .brand{ min-width: 0; }
 }
 
-/* Küçük telefonlar için ekstra ayar (iPhone SE vb.) */
-@media (max-width: 400px) {
-    .service-img-grid {
-        grid-template-columns: 1fr !important; /* Çok küçük ekranda resimler tek sıra */
-    }
+/* Projeler grid taşmasını önle */
+@media (max-width: 600px){
+  .proje-grid{ grid-template-columns: 1fr; }
 }
 
     /* ============================================================
