@@ -819,10 +819,7 @@ html, body{ overflow-x:hidden; }
     <a href="#hizmetler" class="drawer-link">HİZMETLER</a>
     <a href="#projeler" class="drawer-link">PROJELER</a>
     <a href="#iletisim-formu" class="drawer-link">İLETİŞİM</a>
-<a class="drawer-link" target="_blank" rel="noopener"
-   href="https://wa.me/905362689242?text=Merhaba%2C%20DEHA%20Tasar%C4%B1m%20Evi%E2%80%99ne%20ho%C5%9F%20geldiniz.%20Ke%C5%9Fif%20ve%20fiyat%20teklifi%20i%C3%A7in%20konum%20ve%20yap%C4%B1lacak%20i%C5%9Fi%20yazabilir%20misiniz%3F">
-  WHATSAPP
-</a>
+<a class="drawer-link" href="#" onclick="openWhatsApp(event)">WHATSAPP</a>
   </aside>
 
   <nav>
@@ -841,8 +838,7 @@ html, body{ overflow-x:hidden; }
       </div>
 
       <div class="nav-cta">
-        <a class="btn-mini" target="_blank" rel="noopener"
-   href="https://wa.me/905362689242?text=Merhaba%2C%20DEHA%20Tasar%C4%B1m%20Evi%E2%80%99ne%20ho%C5%9F%20geldiniz.%20Ke%C5%9Fif%20ve%20fiyat%20teklifi%20i%C3%A7in%20konum%20ve%20yap%C4%B1lacak%20i%C5%9Fi%20yazabilir%20misiniz%3F">
+       <a class="btn-mini" href="#" onclick="openWhatsApp(event)">
   <i class="fa-brands fa-whatsapp"></i> TEKLİF VER
 </a>
       </div>
@@ -1233,10 +1229,7 @@ html, body{ overflow-x:hidden; }
           <!-- Linkleri sonra instagram hesabın açılınca doldurursun -->
           <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
           <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="https://wa.me/905362689242?text=Merhaba%2C%20DEHA%20Tasar%C4%B1m%20Evi%E2%80%99ne%20ho%C5%9F%20geldiniz.%20Ke%C5%9Fif%20ve%20fiyat%20teklifi%20i%C3%A7in%20konum%20ve%20yap%C4%B1lacak%20i%C5%9Fi%20yazabilir%20misiniz%3F"
-   target="_blank"
-   rel="noopener"
-   aria-label="WhatsApp">
+          <a href="#" onclick="openWhatsApp(event)" aria-label="WhatsApp">
   <i class="fa-brands fa-whatsapp"></i>
 </a>
         </div>
@@ -1255,13 +1248,22 @@ html, body{ overflow-x:hidden; }
   </div>
 
   <!-- WhatsApp -->
-  <a class="whatsapp-float"
-   href="https://wa.me/905362689242?text=Merhaba%2C%20DEHA%20Tasar%C4%B1m%20Evi%E2%80%99ne%20ho%C5%9F%20geldiniz.%20Ke%C5%9Fif%20ve%20fiyat%20teklifi%20i%C3%A7in%20konum%20ve%20yap%C4%B1lacak%20i%C5%9Fi%20yazabilir%20misiniz%3F"
-   target="_blank" rel="noopener" aria-label="WhatsApp">
+  <a class="whatsapp-float" href="#" onclick="openWhatsApp(event)" aria-label="WhatsApp">
+
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
   </a>
 
   <script>
+    /* ✅ TEK MERKEZ WHATSAPP */
+    const WHATSAPP_URL =
+      "https://wa.me/905362689242?text=" +
+      encodeURIComponent("Merhaba, DEHA Tasarım Evi’ne hoş geldiniz. Keşif ve fiyat teklifi için konum ve yapılacak işi yazabilir misiniz?");
+
+    function openWhatsApp(e){
+      if(e) e.preventDefault();
+      window.open(WHATSAPP_URL, "_blank", "noopener");
+    }
+
     /* ✅ PRELOADER */
     window.addEventListener("load", function(){
       const preloader = document.getElementById("preloader");
@@ -1270,7 +1272,7 @@ html, body{ overflow-x:hidden; }
       preloader.style.visibility = "hidden";
       setTimeout(() => { preloader.remove(); }, 650);
     });
-
+    
     /* ===== Slider ===== */
     let idx = 0;
     const slides = document.querySelectorAll('.slide');
@@ -1413,6 +1415,7 @@ html, body{ overflow-x:hidden; }
 
 </body>
 </html>
+
 
 
 
