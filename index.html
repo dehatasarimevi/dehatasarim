@@ -1254,15 +1254,83 @@ html, body{ overflow-x:hidden; }
   </a>
 
   <script>
-    /* ✅ TEK MERKEZ WHATSAPP */
-    const WHATSAPP_URL =
-      "https://wa.me/905362689242?text=" +
-      encodeURIComponent("Merhaba, DEHA Tasarım Evi’ne hoş geldiniz. Keşif ve fiyat teklifi için konum ve yapılacak işi yazabilir misiniz?");
+    /* ✅ TEK MERKEZ WHATSAPP (İsimden tahmini Bey/Hanım) */
+const WA_NUMBER = "905362689242";
 
-    function openWhatsApp(e){
-      if(e) e.preventDefault();
-      window.open(WHATSAPP_URL, "_blank", "noopener");
-    }
+const FEMALE_NAMES = new Set([
+  "ayşe","fatma","emine","hatice","zeynep","elif","meryem","kübra","esra","rabia","sultan",
+  "melike","leyla","leylâ","müge","büşra","tuğba","şeyma","şeyda","seda","sevil","sevgi",
+  "dilek","gül","gülsüm","gülşah","gülay","eda","irem","hülya","pınar","bahar",
+  "aslı","nazlı","yasemin","nuran","nurgül","selma","sema","sumeyye","sümeyye",
+  "ece","ceyda","ceylan","hande","gamze","gizem","sıla","bilge","banu"
+]);
+
+const MALE_NAMES = new Set([
+  "ahmet","mehmet","mustafa","ali","veli","hasan","hüseyin","ibrahim","ismail","yusuf","ömer",
+  "osman","murat","emre","burak","can","cem","kemal","serkan","volkan","onur","erkan","furkan",
+  "enes","doğan","kadir","halil","recep","salih","selim","orhan","yakup","tahir","hakan","tuncay",
+  "umut","kaan","barış","savaş","gökhan","tolga","sinan","bora"
+]);
+
+function normTR(str){
+  return (str || "")
+    .trim()
+    .toLocaleLowerCase("tr-TR")
+    .replace(/\s+/g, " ");
+}
+
+function toTitleCaseTR(str){
+  const s = normTR(str);
+  if(!s) return "";
+  return s.split(" ")
+    .map(w => w ? (w[0].toLocaleUpperCase("tr-TR") + w.slice(1)) : "")
+    .join(" ");
+}
+
+function guessHonorific(firstName){
+  const n = normTR(firstName);
+  if(!n) return "";
+  if(FEMALE_NAMES.has(n)) return "Hanım";
+  if(MALE_NAMES.has(n)) return "Bey";
+  return "";
+}
+
+function getFieldValue(selector){
+  const el = document.querySelector(selector);
+  return el ? (el.value || "").trim() : "";
+}
+
+function buildWhatsAppText(){
+  const ad  = toTitleCaseTR(getFieldValue('input[name="Ad"]'));
+  const tel = getFieldValue('input[name="Telefon"]');
+  const msg = getFieldValue('textarea[name="Mesaj"]');
+
+  const firstName = ad ? ad.split(" ")[0] : "";
+  const honor = guessHonorific(firstName);
+
+  let selam = "Merhaba";
+  if(ad && honor) selam += ` ${ad} ${honor}`;
+  else if(ad) selam += ` ${ad}`;
+  selam += ",";
+
+  let text =
+`${selam}
+
+DEHA Tasarım Evi’ne hoş geldiniz. Keşif ve fiyat teklifi için konum ve yapılacak işi yazabilir misiniz?`;
+
+  if(tel) text += `\n\nTelefon: ${tel}`;
+  if(msg) text += `\nMesaj: ${msg}`;
+
+  text += `\nKonum:`;
+  return text;
+}
+
+function openWhatsApp(e){
+  if(e) e.preventDefault();
+  const text = buildWhatsAppText();
+  const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+  window.open(url, "_blank", "noopener");
+}
 
     /* ✅ PRELOADER */
     window.addEventListener("load", function(){
@@ -1415,6 +1483,7 @@ html, body{ overflow-x:hidden; }
 
 </body>
 </html>
+
 
 
 
